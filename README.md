@@ -3,16 +3,6 @@
 ## Description
 Blogify is a web application that allows users to create, read, update, and delete blog posts. Users can sign up, sign in, and comment on blog posts. The application uses Node.js, Express, MongoDB, and EJS for server-side rendering.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 ## Installation
 Follow these steps to get the development environment running.
 
