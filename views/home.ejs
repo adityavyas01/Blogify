@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>HomePage</title>
+    <style>
+      body {
+        transition: background-color 0.3s, color 0.3s;
+        font-family: "Roboto", sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+      }
+      .card-img-top:hover {
+        transform: scale(1.1);
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      .btn-primary {
+        margin-top: auto;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+      }
+      .dark-theme {
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .dark-theme .card {
+        background-color: #1f1f1f;
+        border-color: #444;
+      }
+      .dark-theme .card-title {
+        color: #ffffff;
+      }
+      .dark-theme .btn-primary {
+        background-color: #3a3a3a;
+        border-color: #444;
+      }
+      .dark-theme .btn-primary:hover {
+        background-color: #444;
+        border-color: #555;
+      }
+      .container {
+        margin-top: 3rem;
+        animation: fadeIn 1s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      footer {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      footer p {
+        margin: 0;
+        font-size: 1rem;
+      }
+      .dark-theme footer {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <% blogs.forEach(blog => { %>
+        <div class="col mb-4">
+          <div class="card h-100 shadow-sm">
+            <img
+              src="<%= blog.coverImageURL %>"
+              class="card-img-top"
+              alt="Cover Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; Made By Aditya Vyas With ❤️</p>
+    </footer>
+
+    <%- include('./partials/scripts') %>
+  </body>
+</html>
