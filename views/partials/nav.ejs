@@ -1,0 +1,137 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Blogify</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <% if (locals.user) { %>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/blog/add-new"
+            >Add Blog</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Adi
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+          </ul>
+        </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/signup"
+            >Create Account</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/signin"
+            >Signin</a
+          >
+        </li>
+        <% } %>
+      </ul>
+      <button id="theme-toggle" class="btn btn-outline-light">Dark Mode</button>
+    </div>
+  </div>
+</nav>
+
+<% if (locals.error) { %>
+<div class="container mt-4">
+  <div class="alert alert-danger" role="alert"><%= locals.error %></div>
+</div>
+<% } %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme") || "light";
+
+    if (currentTheme === "dark") {
+      document.body.classList.add("dark-theme");
+      themeToggleBtn.textContent = "Light Mode";
+    }
+
+    themeToggleBtn.addEventListener("click", function () {
+      document.body.classList.toggle("dark-theme");
+      const theme = document.body.classList.contains("dark-theme")
+        ? "dark"
+        : "light";
+      localStorage.setItem("theme", theme);
+      themeToggleBtn.textContent =
+        theme === "dark" ? "Light Mode" : "Dark Mode";
+    });
+  });
+</script>
+
+<style>
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  .dark-theme .navbar {
+    background-color: #1f1f1f;
+  }
+  .dark-theme .navbar .nav-link {
+    color: #ffffff;
+  }
+  .dark-theme .navbar .navbar-brand {
+    color: #ffffff;
+  }
+  .dark-theme .navbar .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  .dark-theme .navbar .btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #121212;
+  }
+  .dark-theme .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  .dark-theme .container {
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+  .dark-theme .blog-title {
+    color: #ffffff;
+  }
+  .dark-theme .blog-body {
+    color: #d1d1d1;
+  }
+  .dark-theme .comment {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+  .dark-theme .comment-content {
+    background-color: #3a3a3a;
+    color: #d1d1d1;
+  }
+  .dark-theme .comment-form {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+</style>
